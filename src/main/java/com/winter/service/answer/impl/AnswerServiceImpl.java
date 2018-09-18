@@ -34,15 +34,19 @@ public class AnswerServiceImpl implements AnswerService {
 		// id不存在存在则添加
 		Integer userId = TokenUtil.getUserId(token);
 		try {
+			Date now = new Date();
 			if (StringUtils.isEmpty(answer.getId())) {
 				answer.setUserId(userId);// 设置回答所属用户id
-				answer.setAnswerTime(new Date());
+				answer.setAnswerTime(now);// 回答时间
+				answer.setIsBlack(0);
+				answer.setIsTop(0);
 				flag = answerMapper.insertSelective(answer);
 			} else {// 保存修改
 				Answer tempAnswer = answerMapper.selectByPrimaryKey(answer.getId());
 				if (tempAnswer != null) {// 判断该id的问题是否存在
 					if (tempAnswer.getUserId().equals(userId)) {// 判断是否所属用户的回答
 						// 修改保存
+						answer.setModifyTime(now);
 						flag = answerMapper.updateByPrimaryKeySelective(answer);
 					} else {
 						log.error("没有修改该回答的权限");

@@ -3,6 +3,8 @@
  */
 package com.winter.model;
 
+import java.util.Date;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,6 +20,7 @@ public class Category {
 	private String name;
 	private Integer isShow;
 	private Integer rank;
+	private Date modifyTime;
 
 	/**
 	 * @return the id
@@ -77,6 +80,21 @@ public class Category {
 	 */
 	public void setRank(Integer rank) {
 		this.rank = rank;
+	}
+
+	/**
+	 * @return the modifyTime
+	 */
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	/**
+	 * @param modifyTime
+	 *            the modifyTime to set
+	 */
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 
 }

@@ -3,7 +3,7 @@ Implementation-Title: springboot-mybatis-demo
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Wellson
 Implementation-Vendor-Id: com.winter
-Build-Jdk: 1.8.0_121
+Build-Jdk: 1.8.0_171
 Implementation-URL: http://projects.spring.io/spring-boot/springboot-m
  ybatis-demo/
 Created-By: Maven Integration for Eclipse
