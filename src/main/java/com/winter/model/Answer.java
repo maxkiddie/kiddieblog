@@ -20,8 +20,11 @@ public class Answer {
 	private Integer userId;
 	private String content;
 	private Date answerTime;
+	private Date modifyTime;
 	private Integer goodCount;
 	private Integer badCount;
+	private Integer isTop;
+	private Integer isBlack;
 
 	/**
 	 * @return the id
@@ -111,6 +114,51 @@ public class Answer {
 	 */
 	public void setBadCount(Integer badCount) {
 		this.badCount = badCount;
+	}
+
+	/**
+	 * @return the isTop
+	 */
+	public Integer getIsTop() {
+		return isTop;
+	}
+
+	/**
+	 * @param isTop
+	 *            the isTop to set
+	 */
+	public void setIsTop(Integer isTop) {
+		this.isTop = isTop;
+	}
+
+	/**
+	 * @return the isBlack
+	 */
+	public Integer getIsBlack() {
+		return isBlack;
+	}
+
+	/**
+	 * @param isBlack
+	 *            the isBlack to set
+	 */
+	public void setIsBlack(Integer isBlack) {
+		this.isBlack = isBlack;
+	}
+
+	/**
+	 * @return the modifyTime
+	 */
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	/**
+	 * @param modifyTime
+	 *            the modifyTime to set
+	 */
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 
 }
