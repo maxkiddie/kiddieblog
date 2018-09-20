@@ -8,6 +8,8 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.winter.base.Result;
@@ -22,6 +24,8 @@ import com.winter.utils.TokenUtil;
  *
  *         2018年8月3日 下午2:36:18
  */
+@Service
+@Transactional
 public class AnswerServiceImpl implements AnswerService {
 	private final static Logger log = LoggerFactory.getLogger(AnswerServiceImpl.class);
 

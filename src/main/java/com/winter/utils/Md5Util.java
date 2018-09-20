@@ -20,6 +20,8 @@ public class Md5Util {
 	 * @return MD5加密后的字符串
 	 */
 	public static String getMD5(String str) {
+		if (str == null || "".equals(str))
+			return null;
 		try {
 			// 生成一个MD5加密计算摘要
 			MessageDigest md = MessageDigest.getInstance("MD5");
@@ -33,5 +35,5 @@ public class Md5Util {
 			return null;
 		}
 	}
-	
+
 }

@@ -79,6 +79,7 @@ public class UserServiceImpl implements UserService {
 			flag = userMapper.insert(user);
 		} catch (Exception e) {
 			log.error("添加用户失败:" + user.getNickName());
+			result.setResultEnum(ResultEnum.DB_FAIL);
 		}
 		if (flag != 0) {
 			log.info("添加用户成功:" + user.getNickName());

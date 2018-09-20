@@ -1,7 +1,13 @@
 server:
     port: 8080
-
+   
 spring:
+#    resources:
+#      static-locations: file:${img_path}
+    http:
+        multipart:
+            maxFileSize: 10Mb
+            maxRequestSize: 10Mb
     datasource:
         name: test
         url: jdbc:mysql://140.143.233.204:3306/kiddie_blog?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
