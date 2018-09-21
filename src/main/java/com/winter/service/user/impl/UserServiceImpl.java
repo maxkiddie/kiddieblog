@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(Md5Util.getMD5(user.getPassword()));
 		User record = new User(user.getUserName(), user.getPassword());
 		record.setIsBlack(0);// 白名单条件
-		record = userMapper.selectOne(record);
+		record = userMapper.selectUserByUserNameAndPwd(record);
 		if (record != null) {// 用户名匹配成功
 			result.setResultEnum(ResultEnum.SUSS);
 			result.setData(TokenUtil.createToken(record.getId()));

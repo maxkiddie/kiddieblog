@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.winter.mapper.UserMapper">
+	<select id="selectUserByUserNameAndPwd" resultType="User">
+		select
+		user_name,password from user
+		<where>
+			<if test="userName!=null">
+				and user_name=#{userName}
+			</if>
+			<if test="password!=null">
+				and password=#{password}
+			</if>
+			<if test="isBlack!=null">
+				and is_black=#{isBlack}
+			</if>
+		</where>
+		limit 1
+	</select>
+
 </mapper>

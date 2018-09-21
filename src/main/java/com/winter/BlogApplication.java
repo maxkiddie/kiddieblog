@@ -2,12 +2,14 @@ package com.winter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.winter.mapper.base.BaseMapper;
 
 import tk.mybatis.spring.annotation.MapperScan;
 
+@ServletComponentScan
 @EnableTransactionManagement
 @SpringBootApplication
 @MapperScan(basePackages = { "com.winter.mapper" }, markerInterface = BaseMapper.class)
