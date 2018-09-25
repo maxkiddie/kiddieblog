@@ -27,8 +27,8 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/login", produces = { "application/json;charset=UTF-8" })
-	public Result login(User user) {
-		return userService.login(user);
+	public Result login(User user, String sign, String code) {
+		return userService.login(user, sign, code);
 	}
 
 	@ResponseBody

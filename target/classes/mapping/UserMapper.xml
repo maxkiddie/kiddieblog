@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.winter.mapper.UserMapper">
-	<select id="selectUserByUserNameAndPwd" resultType="User">
+<mapper namespace="com.winter.mapper.ManagerMapper">
+	<select id="selectManagerByUserNameAndPwd" resultType="Manager">
 		select
-		user_name,password from user
+		user_name,password,status from manager
 		<where>
 			<if test="userName!=null">
 				and user_name=#{userName}
@@ -11,8 +11,8 @@
 			<if test="password!=null">
 				and password=#{password}
 			</if>
-			<if test="isBlack!=null">
-				and is_black=#{isBlack}
+			<if test="status!=null">
+				and status=#{status}
 			</if>
 		</where>
 		limit 1

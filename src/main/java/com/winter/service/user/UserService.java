@@ -12,7 +12,7 @@ public interface UserService {
 
 	Result addUser(User user, String sign, String code);
 
-	Result login(User user);
+	Result login(User user, String sign, String code);
 
 	Result getUserInfo(String token);
 

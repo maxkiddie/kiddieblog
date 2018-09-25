@@ -15,6 +15,7 @@ import com.winter.mapper.ManagerMapper;
 import com.winter.model.Manager;
 import com.winter.service.manager.ManagerService;
 import com.winter.utils.Md5Util;
+import com.winter.utils.StringUtils;
 import com.winter.utils.TokenUtil;
 
 /**
@@ -76,7 +77,12 @@ public class ManagerServiceImpl implements ManagerService {
 		Result result = new Result();
 		manager.setPassword(Md5Util.getMD5(manager.getPassword()));
 		Manager record = new Manager(manager.getUserName(), manager.getPassword());
-		record = managerMapper.selectOne(record);
+		record.setStatus(0);
+		if (StringUtils.isNull(manager.getUserName(), manager.getPassword())) {
+			result.setResultEnum(ResultEnum.PARAMS_ERROR);
+			return result;
+		}
+		record = managerMapper.selectManagerByUserNameAndPwd(record);
 		if (record != null) {// 管理员名匹配成功
 			result.setResultEnum(ResultEnum.SUSS);
 			result.setData(TokenUtil.createToken(record.getId()));

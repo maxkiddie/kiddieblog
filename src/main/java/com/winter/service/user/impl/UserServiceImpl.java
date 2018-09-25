@@ -90,11 +90,32 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 用户登录
 	 */
-	public Result login(User user) {
+	public Result login(User user, String sign, String code) {
 		Result result = new Result();
+		// 验证码
+		if (StringUtils.isEmpty(sign) || StringUtils.isEmpty(code)) {
+			log.error("验证码或者标识不能为空");
+			result.setResultEnum(ResultEnum.CODE_ERROR);
+			return result;
+		}
+		String checkCode = redisService.getString(CODE_PREFIX + sign);
+		if (StringUtils.isEmpty(checkCode)) {
+			log.error("验证码超时");
+			result.setResultEnum(ResultEnum.CODE_TIMEOUT);
+			return result;
+		}
+		if (code.equals(checkCode)) {
+			log.error("验证码不匹配,传输code：" + code + ",内存code:" + checkCode);
+			result.setResultEnum(ResultEnum.CODE_NOT_MATCH);
+			return result;
+		}
 		user.setPassword(Md5Util.getMD5(user.getPassword()));
 		User record = new User(user.getUserName(), user.getPassword());
 		record.setIsBlack(0);// 白名单条件
+		if (StringUtils.isNull(record.getUserName(), record.getPassword())) {
+			result.setResultEnum(ResultEnum.PARAMS_ERROR);
+			return result;
+		}
 		record = userMapper.selectUserByUserNameAndPwd(record);
 		if (record != null) {// 用户名匹配成功
 			result.setResultEnum(ResultEnum.SUSS);
