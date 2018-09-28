@@ -7,6 +7,10 @@ import java.util.Date;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author xuzhaojie
@@ -17,7 +21,10 @@ import javax.persistence.Table;
 public class Answer {
 	@Id
 	private Integer id;
+	@NotNull(message = "回答所属用户不能为空")
 	private Integer userId;
+	@NotBlank(message = "回答内容不能为空")
+	@Length(min = 3, max = 1000, message = "回答内容长度应该处于[3,1000]个字节")
 	private String content;
 	private Date answerTime;
 	private Date modifyTime;

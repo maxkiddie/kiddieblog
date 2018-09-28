@@ -7,6 +7,10 @@ import java.util.Date;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author xuzhaojie
@@ -17,10 +21,16 @@ import javax.persistence.Table;
 public class Question {
 	@Id
 	private Integer id;
+	@NotNull(message = "问题所属用户不能为空")
 	private Integer userId;
+	@NotNull(message = "回答所属分类不能为空")
 	private Integer categoryId;
+	@NotBlank(message = "回答标题不能为空")
+	@Length(min = 3, max = 50, message = "标题长度应该处于[3,50]个字节")
 	private String title;
 	private String label;
+	@NotBlank(message = "回答内容不能为空")
+	@Length(min = 3, max = 4000, message = "问题内容长度应该处于[3,4000]个字节")
 	private String content;
 	private Integer isShow;
 	private Integer isTop;

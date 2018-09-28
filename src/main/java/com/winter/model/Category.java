@@ -7,6 +7,11 @@ import java.util.Date;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 
 /**
  * @author xuzhaojie
@@ -17,8 +22,13 @@ import javax.persistence.Table;
 public class Category {
 	@Id
 	private Integer id;
+	@NotBlank(message = "分类名称不能为空")
+	@Length(min = 2, max = 20, message = "分类名称长度应处于[2,20]个字符")
 	private String name;
+	@NotNull(message = "是否显示不能为空")
 	private Integer isShow;
+	@NotNull(message = "排序序号不能为空")
+	@Range(min = 0, max = 100, message = "排序只能处于[0,100]")
 	private Integer rank;
 	private Date modifyTime;
 

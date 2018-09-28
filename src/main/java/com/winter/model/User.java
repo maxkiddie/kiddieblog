@@ -5,13 +5,18 @@ import java.util.Date;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 @Table(name = "user")
 public class User {
 	@Id
 	private Integer id;
-
+	@NotBlank(message = "用户名不能为空")
+	@Length(min = 3, max = 20, message = "用户名应该处于[3,20]个字符")
 	private String userName;
-
+	@NotBlank(message = "密码不能为空")
+	@Length(min = 6, max = 20, message = "密码应该处于[6,20]个字符")
 	private String password;
 
 	private String nickName;
