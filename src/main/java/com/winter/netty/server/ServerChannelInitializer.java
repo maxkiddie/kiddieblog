@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.winter.netty.coder.MessageDecoder;
 import com.winter.netty.coder.MessageEncoder;
-import com.winter.netty.server.handler.HeartBeatPingHandler;
+import com.winter.netty.handler.HeartBeatHandler;
 import com.winter.netty.server.handler.ServerHandler;
 
 import io.netty.channel.ChannelInitializer;
@@ -21,11 +21,11 @@ import io.netty.handler.timeout.IdleStateHandler;
  */
 public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
-	private static final HeartBeatPingHandler heartBeatHandler = new HeartBeatPingHandler();
+	private static final HeartBeatHandler heartBeatHandler = new HeartBeatHandler();
 
 	@Override
 	public void initChannel(SocketChannel ch) throws Exception {
-		ch.pipeline().addLast("idleState", new IdleStateHandler(5, 0, 0, TimeUnit.SECONDS))
+		ch.pipeline().addLast("idleState", new IdleStateHandler(60, 0, 0, TimeUnit.SECONDS))
 				.addLast("encoder", new MessageEncoder()).addLast("decoder", new MessageDecoder())
 				.addLast("heartBeat", heartBeatHandler).addLast("serverHandler", new ServerHandler());
 	}

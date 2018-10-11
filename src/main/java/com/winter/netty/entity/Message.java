@@ -40,6 +40,11 @@ public class Message {
 		this.data = data;
 	}
 
+	public Message(Byte cammand) {
+		this.header = new Header();
+		this.header.setCammand(cammand);
+	}
+
 	public byte[] toByte() {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		out.write(Header.PACKAGE_TAG);

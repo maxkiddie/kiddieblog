@@ -14,7 +14,8 @@ public class Header {
 	// 标志头
 	public static final byte PACKAGE_TAG = 0x01;
 
-	public static final byte HEART_BEAT_CAMMAND = 1;
+	public static final byte HEART_BEAT_CAMMAND_PING = 1;
+	public static final byte HEART_BEAT_CAMMAND_PONG = 2;
 	private byte tag;
 	/* 编码 */ private byte encode;
 	/* 加密 */ private byte encrypt;
