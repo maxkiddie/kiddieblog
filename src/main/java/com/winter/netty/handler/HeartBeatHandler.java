@@ -3,8 +3,6 @@
  */
 package com.winter.netty.handler;
 
-import java.util.Date;
-
 import com.winter.netty.entity.Header;
 import com.winter.netty.entity.Message;
 import com.winter.utils.DateUtil;
